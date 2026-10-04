@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #141718;
+  --brand-teal: #05bece;
+  --brand-purple: #7828ec;
+  --brand-gradient: linear-gradient(120deg, var(--brand-teal), var(--brand-purple));
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-purple: var(--brand-purple);
+  --font-sans: var(--font-montserrat);
+}
+
+html {
+  font-size: 107%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.brand-gradient {
+  background: var(--brand-gradient);
+}
+
+.brand-gradient-text {
+  /* Solid-color fallback: if the browser doesn't support clipping the
+     background to the text, this color/background stay as a plain solid
+     heading instead of leaving the text invisible (color: transparent
+     with no clip is unreadable, and a real risk in older/niche browsers
+     and some print/high-contrast rendering paths). */
+  color: var(--brand-teal);
+  background: var(--brand-gradient);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .brand-gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
